@@ -23,7 +23,7 @@ class EDF:
 
     def __str__(self):
         """ Print out some useful information. """
-        name = "Filenmae: " + self.fname
+        name = "Filename: " + self.fname
         header = self.header.decode()
 
         return "{}\n{}".format(name, header)
