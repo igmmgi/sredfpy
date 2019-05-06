@@ -1,4 +1,6 @@
 """ Reads SR Research EDF files. """
+import sys
+import tqdm
 from libc.stdlib cimport malloc
 cimport numpy as np
 import numpy as np
@@ -79,7 +81,7 @@ cdef cread(filename):
     cdef int idx_rec = 0
     cdef char *msg
 
-    while True:
+    for _ in tqdm.tqdm(range(num_elements-1)):
 
         sample_type = edf_get_next_data(edf_file_ptr)
 
@@ -178,10 +180,7 @@ cdef cread(filename):
 
             idx_rec += 1
 
-        elif sample_type == NO_PENDING_ITEMS:
-
-            edf_close_file(edf_file_ptr)
-            break
+    edf_close_file(edf_file_ptr)
 
     fsample = fsample[0:idx_fsample]
     fevent = fevent[0:idx_fevent]

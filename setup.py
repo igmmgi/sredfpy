@@ -24,6 +24,6 @@ setup(
     author='igm',
     cmdclass={'build_ext': build_ext},
     packages=['sredfpy'],
-    install_requires=["cython", "numpy", "pandas"],
+    install_requires=["cython", "numpy", "pandas", "tqdm"],
     ext_modules=cythonize(ext)
 )
